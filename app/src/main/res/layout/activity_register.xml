@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <include layout="@layout/bar_layout"
+        android:id="@+id/register_toolBarID"/>
+
+    <EditText
+        android:id="@+id/reg_emailID"
+        android:layout_width="321dp"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:hint="Email "
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_usernameID"
+        app:layout_constraintVertical_bias="0.16" />
+
+    <EditText
+        android:id="@+id/reg_passwordID"
+        android:layout_width="333dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="Password "
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_emailID"
+        app:layout_constraintVertical_bias="0.007" />
+
+    <EditText
+        android:id="@+id/reg_usernameID"
+        android:layout_width="326dp"
+        android:layout_height="67dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <Button
+        android:id="@+id/reg_createBtnID"
+        android:layout_width="154dp"
+        android:layout_height="61dp"
+        android:backgroundTint="#673AB7"
+        android:paddingStart="4dp"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="4dp"
+        android:text="Create Account"
+        android:textColor="#F8F6F6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_passwordID"
+        app:layout_constraintVertical_bias="0.363" />
+
+    <TextView
+        android:id="@+id/UserRegHeadingID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arbutus_slab"
+        android:text="User Registration"
+        android:textColor="#18011C"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/reg_usernameID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57" />
+
+    <TextView
+        android:id="@+id/enteruserID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/andika"
+        android:text="Enter Username"
+        android:textColor="#1C0220"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/reg_usernameID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941" />
+
+    <TextView
+        android:id="@+id/enterEmailID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/andika"
+        android:text="Enter Email ID"
+        android:textColor="#1C0220"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/reg_emailID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_usernameID"
+        app:layout_constraintVertical_bias="0.833" />
+
+    <TextView
+        android:id="@+id/createPassID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/andika"
+        android:text="Password"
+        android:textColor="#1C0220"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/reg_passwordID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_emailID"
+        app:layout_constraintVertical_bias="0.844" />
+</androidx.constraintlayout.widget.ConstraintLayout>

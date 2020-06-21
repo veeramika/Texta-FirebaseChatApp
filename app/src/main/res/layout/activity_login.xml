@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <include layout="@layout/bar_layout"
+        android:id="@+id/login_toolbar"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arbutus_slab"
+        android:text="Login to your account"
+        android:textColor="#1F0323"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.177" />
+
+    <EditText
+        android:id="@+id/login_emailID"
+        android:layout_width="352dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="Email "
+        android:inputType="textEmailAddress"
+        android:textColorHint="#A19999"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_enteremailID"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <EditText
+        android:id="@+id/login_PasswordID"
+        android:layout_width="338dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="numberPassword"
+        android:textColorHint="#938C8C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_enterpassID"
+        app:layout_constraintVertical_bias="0.076" />
+
+    <TextView
+        android:id="@+id/login_enteremailID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/andika"
+        android:text="Enter your Email ID"
+        android:textColor="#220427"
+        android:textColorHint="#26032C"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.127" />
+
+    <TextView
+        android:id="@+id/login_enterpassID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/andika"
+        android:text="Enter Password"
+        android:textColor="#220427"
+        android:textColorHint="#300537"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_emailID"
+        app:layout_constraintVertical_bias="0.153" />
+
+    <Button
+        android:id="@+id/LoginProceedBtnID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#6328CC"
+        android:padding="4dp"
+        android:paddingStart="4dp"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="4dp"
+        android:text="Proceed"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_PasswordID"
+        app:layout_constraintVertical_bias="0.348" />
+</androidx.constraintlayout.widget.ConstraintLayout>

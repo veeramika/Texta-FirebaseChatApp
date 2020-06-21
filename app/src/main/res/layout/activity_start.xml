@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgcolor"
+    tools:context=".StartActivity">
+
+    <Button
+        android:id="@+id/str_reg_buttonID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="180dp"
+        android:backgroundTint="#9C27B0"
+        android:padding="4dp"
+        android:paddingStart="4dp"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="4dp"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/freindzoneID"
+        app:layout_constraintVertical_bias="0.349" />
+
+    <Button
+        android:id="@+id/start_loginBtnID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9C27B0"
+        android:padding="4dp"
+        android:paddingStart="4dp"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/freindzoneID"
+        app:layout_constraintVertical_bias="0.205" />
+
+    <TextView
+        android:id="@+id/freindzoneID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/andika"
+        android:shadowColor="#EC0B57"
+        android:text="Connect to your friend zone..."
+        android:textColor="#DF0B53"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.285" />
+
+    <TextView
+        android:id="@+id/str_namaste_textviewID"
+        android:layout_width="138dp"
+        android:layout_height="85dp"
+        android:fontFamily="@font/architects_daughter"
+        android:text="Texta"
+        android:textColor="#EFE6F1"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.128" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
