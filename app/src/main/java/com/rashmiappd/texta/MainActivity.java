@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser mFirebaseUser;
     DatabaseReference mReference;
 
-    @Override
+   /* @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Intent startIntent = new Intent(MainActivity.this , StartActivity.class);
         startActivity(startIntent);
         finish();
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,35 +55,42 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar setup
         Toolbar mToolbar = findViewById(R.id.main_toolbarID);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("");
 
         mprofileImg = findViewById(R.id.main_profile_image);
         mUsername = findViewById(R.id.main_usernameID);
 
         //Firebase
         mAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mReference = FirebaseDatabase.getInstance().getReference("Users")
-                .child(mFirebaseUser.getUid());
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-       mReference.addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               User user = dataSnapshot.getValue(User.class);
-               mUsername.setText(user.getUsername());
-               if (user.getImageURL().equals("default")){
-                   mprofileImg.setImageResource(R.mipmap.ic_launcher);
-               } else {
+        if (currentUser == null) {
+            Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
+            startActivity(startIntent);
+            finish();
+        } else {
+            mReference = FirebaseDatabase.getInstance().getReference("Users").child(currentUser.getUid());
 
-                   //change this
-                   Glide.with(getApplicationContext()).load(user.getImageURL()).into(mprofileImg);
-               }
-           }
+            mReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    User user = dataSnapshot.getValue(User.class);
+                    mUsername.setText(user.getUsername());
+                    if (user.getImageURL().equals("default")) {
+                        mprofileImg.setImageResource(R.mipmap.ic_launcher);
+                    } else {
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
+                        //change this
+                        Glide.with(getApplicationContext()).load(user.getImageURL()).into(mprofileImg);
+                    }
+                }
 
-           }
-       });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     @Override

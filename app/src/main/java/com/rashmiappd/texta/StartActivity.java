@@ -14,20 +14,19 @@ public class StartActivity extends AppCompatActivity {
 
     private Button mLogin, mRegister;
     FirebaseUser firebaseUser;
-
     @Override
     protected void onStart() {
         super.onStart();
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         //check if user is null
         if (firebaseUser != null){
             Intent intent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
-
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
