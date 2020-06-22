@@ -16,22 +16,25 @@ public class StartActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
-
-        mLogin = findViewById(R.id.start_loginBtnID);
-        mRegister = findViewById(R.id.str_reg_buttonID);
-
-
+    protected void onStart() {
+        super.onStart();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
         //check if user is null
         if (firebaseUser != null){
             Intent intent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start);
+
+        mLogin = findViewById(R.id.start_loginBtnID);
+        mRegister = findViewById(R.id.str_reg_buttonID);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override

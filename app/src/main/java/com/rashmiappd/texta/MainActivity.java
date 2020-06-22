@@ -7,6 +7,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar setup
         Toolbar mToolbar = findViewById(R.id.main_toolbarID);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("");
 
         mprofileImg = findViewById(R.id.main_profile_image);
         mUsername = findViewById(R.id.main_usernameID);
@@ -83,7 +84,23 @@ public class MainActivity extends AppCompatActivity {
 
            }
        });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this,StartActivity.class));
+                finish();
+                return true;
+        }
+        return false;
     }
 }
