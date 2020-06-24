@@ -8,6 +8,7 @@
 
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,58 +19,62 @@
         app:layout_constraintVertical_bias="0.008">
 
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbarID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:popupTheme="@style/MenuStyle">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/main_profile_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_launcher_foreground" />
-
-        <TextView
-            android:id="@+id/main_usernameID"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbarID"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
-            android:text="Rashmi"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
+            android:background="@color/colorPrimaryDark"
+            android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:popupTheme="@style/MenuStyle">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/main_profile_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_launcher_foreground" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081"
-        app:tabIndicatorColor="#fff"
-        app:tabSelectedTextColor="#fff"
-        app:tabTextColor="#fff" />
+
+            <TextView
+                android:id="@+id/main_usernameID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:text="Username"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.081"
+            app:tabIndicatorColor="#fff"
+            app:tabSelectedTextColor="#fff"
+            app:tabTextColor="#fff" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
