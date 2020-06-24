@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".MessageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -32,12 +31,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:popupTheme="@style/MenuStyle">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/msg_profile_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/emptydp" />
-
 
             <TextView
                 android:id="@+id/msg_usernameID"
@@ -50,31 +49,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-
         </androidx.appcompat.widget.Toolbar>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.081"
-            app:tabIndicatorColor="#fff"
-            app:tabSelectedTextColor="#fff"
-            app:tabTextColor="#fff" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

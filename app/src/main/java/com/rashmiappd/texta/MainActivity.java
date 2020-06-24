@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("");
 
-        mprofileImg = findViewById(R.id.main_profile_image);
-        mUsername = findViewById(R.id.main_usernameID);
+        mprofileImg = findViewById(R.id.msg_profile_image);
+        mUsername = findViewById(R.id.msg_usernameID);
 
         //Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     User user = dataSnapshot.getValue(User.class);
                     mUsername.setText(user.getUsername());
                     if (user.getImageURL().equals("default")) {
-                        mprofileImg.setImageResource(R.mipmap.ic_launcher);
+                        mprofileImg.setImageResource(R.drawable.emptydp);
                     } else {
 
                         //change this
