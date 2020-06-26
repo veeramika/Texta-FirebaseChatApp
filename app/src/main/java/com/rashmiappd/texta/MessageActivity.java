@@ -3,12 +3,16 @@ package com.rashmiappd.texta;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rashmiappd.texta.Model.User;
 
+import java.util.HashMap;
+
 import javax.microedition.khronos.opengles.GL;
 
 public class MessageActivity extends AppCompatActivity {
@@ -30,12 +36,18 @@ public class MessageActivity extends AppCompatActivity {
     FirebaseUser fUser;
     DatabaseReference reference;
 
+    ImageButton btn_send;
+    EditText text_send;
+
+    RecyclerView recyclerView;
     Intent intent;
+    String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
+        //Toolbar
         Toolbar toolbar = findViewById(R.id.main_toolbarID);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -46,14 +58,37 @@ public class MessageActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
         profile_image = findViewById(R.id.msg_profile_image);
         username = findViewById(R.id.msg_usernameID);
-        intent = getIntent();
-        String userId = intent.getStringExtra("userid");
+        btn_send = findViewById(R.id.btn_send);
+        text_send = findViewById(R.id.text_send);
+        intent = getIntent();  //Return the intent that started this activity.
 
+        userId = intent.getStringExtra("userid");
         fUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        //Clicking send button functionality
+        btn_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String msg = text_send.getText().toString();
+
+                if (!msg.equals("")){
+                    sendMessage(fUser.getUid(), userId, msg);
+                } else {
+                    Toast.makeText(MessageActivity.this, "Message cannot be empty!", Toast.LENGTH_SHORT).show();
+                }
+                text_send.setText("");
+            }
+        });
+
+
         reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
+        //To read data at a path and listen for changes
+        //here setting name and profile pic on the top toolbar from firebase
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -73,4 +108,21 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+    private void sendMessage(String sender, final String receiver, String message){
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("sender", sender);
+        hashMap.put("receiver", receiver);
+        hashMap.put("message", message);
+        hashMap.put("isSeen", false);
+
+        //Firebase
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("Chats").push().setValue(hashMap);
+        //push() => Generates a new child location using a unique key and returns its Reference.
+        //setValue() => sets the value of new child location
+
+    }
+
+    }
