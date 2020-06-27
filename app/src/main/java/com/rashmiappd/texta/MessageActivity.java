@@ -3,6 +3,7 @@ package com.rashmiappd.texta;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -22,9 +23,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rashmiappd.texta.Adapter.MessageAdapter;
+import com.rashmiappd.texta.Model.Chat;
 import com.rashmiappd.texta.Model.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.microedition.khronos.opengles.GL;
 
@@ -38,6 +43,9 @@ public class MessageActivity extends AppCompatActivity {
 
     ImageButton btn_send;
     EditText text_send;
+
+    MessageAdapter messageAdapter;
+    List<Chat> mChat;
 
     RecyclerView recyclerView;
     Intent intent;
@@ -59,6 +67,11 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         profile_image = findViewById(R.id.msg_profile_image);
         username = findViewById(R.id.msg_usernameID);
@@ -100,6 +113,8 @@ public class MessageActivity extends AppCompatActivity {
                 else{
                     Glide.with(MessageActivity.this).load(user.getImageURL()).into(profile_image);
                 }
+
+                readMessage(fUser.getUid(),userId,user.getImageURL());
             }
 
             @Override
@@ -124,5 +139,28 @@ public class MessageActivity extends AppCompatActivity {
         //setValue() => sets the value of new child location
 
     }
+        private void readMessage(final String myId, final String userId, final String imageUrl){
+        mChat = new ArrayList<>();
 
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mChat.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if(chat.getReceiver().equals(myId) && chat.getSender().equals(userId) || chat.getReceiver().equals(userId) && chat.getSender().equals(myId)){
+                        mChat.add(chat);
+                    }
+                    messageAdapter = new MessageAdapter(MessageActivity.this,mChat,imageUrl);
+                    recyclerView.setAdapter(messageAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        }
     }
