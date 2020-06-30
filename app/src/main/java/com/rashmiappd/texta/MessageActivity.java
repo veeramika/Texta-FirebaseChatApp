@@ -67,10 +67,11 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
+        //Recyclerview to display messages
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setStackFromEnd(true);// So messages inserted from end and shift up
         recyclerView.setLayoutManager(linearLayoutManager);
 
         profile_image = findViewById(R.id.msg_profile_image);
@@ -79,7 +80,7 @@ public class MessageActivity extends AppCompatActivity {
         text_send = findViewById(R.id.text_send);
         intent = getIntent();  //Return the intent that started this activity.
 
-        userId = intent.getStringExtra("userid");
+        userId = intent.getStringExtra("userid");  //userId of the other person
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 
         //Clicking send button functionality
@@ -101,7 +102,7 @@ public class MessageActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
         //To read data at a path and listen for changes
-        //here setting name and profile pic on the top toolbar from firebase
+        //here setting name and profile pic of the person we are chatting to on the top toolbar from firebase
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
