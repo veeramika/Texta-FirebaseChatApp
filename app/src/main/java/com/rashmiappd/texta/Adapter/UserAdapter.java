@@ -22,15 +22,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context mContext;
     private List<User> mUsers;  //User is a class
-   // private boolean ischat;
+    private boolean isChat;
 
    // String theLastMessage;
 
     //Constructor
-    public UserAdapter(Context mContext, List<User> mUsers){
+    public UserAdapter(Context mContext, List<User> mUsers, boolean isChat){
         this.mUsers = mUsers;
         this.mContext = mContext;
-       // this.ischat = ischat;
+        this.isChat = isChat;
     }
 
 
@@ -51,6 +51,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         } else {
             Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
+
+        if (isChat){
+            if (user.getStatus().equals("online")){
+                holder.img_on.setVisibility(View.VISIBLE);
+                holder.img_off.setVisibility(View.GONE);
+            } else {
+                holder.img_on.setVisibility(View.GONE);
+                holder.img_off.setVisibility(View.VISIBLE);
+            }
+        } else {
+            holder.img_on.setVisibility(View.GONE);
+            holder.img_off.setVisibility(View.GONE);
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
