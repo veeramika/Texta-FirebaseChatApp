@@ -44,11 +44,12 @@ public class ChatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chats, container, false);
+
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        fUser = FirebaseAuth.getInstance().getCurrentUser(); //user who is logged in
         userList = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Chats");
 
@@ -58,7 +59,7 @@ public class ChatsFragment extends Fragment {
                 userList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Chat chat = snapshot.getValue(Chat.class);
-                    assert chat != null;
+                    assert chat != null; //Below we add the users with whom text is sent or received by fUser
                     if(chat.getSender().equals(fUser.getUid())){
                         userList.add(chat.getReceiver());
                     }
@@ -67,9 +68,9 @@ public class ChatsFragment extends Fragment {
                     }
                 }
 
-                Set<String> hashSet = new HashSet<String>(userList);
+                Set<String> hashSet = new HashSet<String>(userList);  //To eliminate repeated users
                 userList.clear();
-                userList.addAll(hashSet);
+                userList.addAll(hashSet);  //userList is initialised with list of unique names
 
                 readChats();
             }
@@ -98,7 +99,6 @@ public class ChatsFragment extends Fragment {
                     for (String id : userList) {
                         assert user != null;
                         if (user.getId().equals(id)) {
-                           
                                         mUsers.add(user);
 
                         }

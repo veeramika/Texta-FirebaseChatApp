@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rashmiappd.texta.Fragments.ChatsFragment;
+import com.rashmiappd.texta.Fragments.ProfileFragment;
 import com.rashmiappd.texta.Fragments.UsersFragment;
 import com.rashmiappd.texta.Model.User;
 
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPagerAdapter.addFragments(new ChatsFragment(),"Chats");
         viewPagerAdapter.addFragments(new UsersFragment(), "Users");
-
+        viewPagerAdapter.addFragments(new ProfileFragment(), "My Profile");
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);
