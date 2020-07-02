@@ -12,6 +12,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -91,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
                     if (user.getImageURL().equals("default")) {
                         mprofileImg.setImageResource(R.drawable.emptydp);
                     } else {
-
-                        //change this
                         Glide.with(getApplicationContext()).load(user.getImageURL()).into(mprofileImg);
                     }
                 }
@@ -127,8 +126,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.logout:
+                Log.i("clicked","logout");
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(),StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(new Intent(MainActivity.this, StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                //finish();
                 return true;
         }
         return false;
@@ -173,12 +174,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void status(String status){
        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mReference = FirebaseDatabase.getInstance().getReference("Users").child(mFirebaseUser.getUid());
+      if(mFirebaseUser != null) //if this condition not checked then logout won't work
+      {mReference = FirebaseDatabase.getInstance().getReference("Users").child(mFirebaseUser.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status", status);
 
-        mReference.updateChildren(hashMap);
+        mReference.updateChildren(hashMap);}
     }
 
     @Override
