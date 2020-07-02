@@ -4,8 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/chatbggg"
+    android:background="#B9E2F4"
     tools:context=".MessageActivity">
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/text_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/btn_send"
+            android:background="@android:color/transparent"
+            android:hint="Type a message..." />
+
+        <ImageButton
+            android:id="@+id/btn_send"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_action_name" />
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/appBarLayout" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -23,7 +58,7 @@
             android:id="@+id/main_toolbarID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#BF490D"
+            android:background="#03A9F4"
             android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,11 +67,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:popupTheme="@style/MenuStyle">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/msg_profile_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/emptydp" />
+
+
             <TextView
                 android:id="@+id/msg_usernameID"
                 android:layout_width="wrap_content"
@@ -48,42 +86,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
-        android:layout_below="@id/appBarLayout"
-        android:layout_above="@id/bottom"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:id="@+id/bottom"
-        android:background="#fff"
-        android:layout_alignParentBottom="true">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_send"
-        android:background="@android:color/transparent"
-        android:hint="Type a message..."
-        android:layout_toLeftOf="@id/btn_send"
-        android:layout_centerVertical="true"/>
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ic_action_name"
-            android:id="@+id/btn_send"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
-
-
-    </RelativeLayout>
 
 </RelativeLayout>
