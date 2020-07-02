@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPassword;
     private FirebaseAuth mAuth;
     private Toolbar mRegToolbar;
-    private TextView forgotPassword;
+    private TextView forgot_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,15 @@ public class LoginActivity extends AppCompatActivity {
         mEmailID = findViewById(R.id.login_emailID);
         mPassword = findViewById(R.id.login_PasswordID);
         mProceedLogin = findViewById(R.id.LoginProceedBtnID);
-        //forgot_password = findViewById(R.id.);
+        forgot_password = findViewById(R.id.forgot_password);
+
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LoginActivity.this,"Directing to reset",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+            }
+        });
 
         mProceedLogin.setOnClickListener(new View.OnClickListener() {
             @Override

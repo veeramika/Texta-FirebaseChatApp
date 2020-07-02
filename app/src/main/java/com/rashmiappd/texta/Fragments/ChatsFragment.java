@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.support.v4.media.session.MediaSessionCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rashmiappd.texta.Adapter.UserAdapter;
 import com.rashmiappd.texta.Model.Chat;
+import com.rashmiappd.texta.Model.Chatlist;
 import com.rashmiappd.texta.Model.User;
 import com.rashmiappd.texta.R;
 
@@ -38,7 +40,7 @@ public class ChatsFragment extends Fragment {
     FirebaseUser fUser;
     DatabaseReference reference;
 
-    private List<String> userList;
+    private List<Chatlist> userList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +53,61 @@ public class ChatsFragment extends Fragment {
 
         fUser = FirebaseAuth.getInstance().getCurrentUser(); //user who is logged in
         userList = new ArrayList<>();
-        reference = FirebaseDatabase.getInstance().getReference("Chats");
+
+        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fUser.getUid());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Chatlist chatlist = snapshot.getValue(Chatlist.class); //This line gives RE if empty Chatlist constructor is absent!
+                    userList.add(chatlist);
+                }
+                chatList();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //updateToken(FirebaseInstanceId.getInstance().getToken());
+        return view;
+    }
+
+
+    private void chatList() {
+        mUsers = new ArrayList<>();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mUsers.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    User user = snapshot.getValue(User.class);
+                    for (Chatlist chatlist : userList){
+                        if (user.getId().equals(chatlist.getId())){
+                            mUsers.add(user);
+                        }
+                    }
+                }
+                userAdapter = new UserAdapter(getContext(), mUsers, true);
+                recyclerView.setAdapter(userAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+}
+
+
+        /*reference = FirebaseDatabase.getInstance().getReference("Chats");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,3 +172,4 @@ public class ChatsFragment extends Fragment {
         });
     }
 }
+*/

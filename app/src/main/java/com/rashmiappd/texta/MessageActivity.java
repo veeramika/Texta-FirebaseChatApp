@@ -160,10 +160,30 @@ public class MessageActivity extends AppCompatActivity {
 
         //Firebase
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        //final String userid = intent.getStringExtra("userid");     // THIS, ADD IT
         reference.child("Chats").push().setValue(hashMap);
         //push() => Generates a new child location using a unique key and returns its Reference.
         //setValue() => sets the value of new child location
 
+
+        //add user to chat fragment
+        final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(fUser.getUid())
+                .child(userId);
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    chatRef.child("id").setValue(userId);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
         private void readMessage(final String myId, final String userId, final String imageUrl){
         mChat = new ArrayList<>();
