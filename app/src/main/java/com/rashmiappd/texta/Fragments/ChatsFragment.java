@@ -19,10 +19,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rashmiappd.texta.Adapter.UserAdapter;
 import com.rashmiappd.texta.Model.Chat;
 import com.rashmiappd.texta.Model.Chatlist;
 import com.rashmiappd.texta.Model.User;
+import com.rashmiappd.texta.Notifications.Token;
 import com.rashmiappd.texta.R;
 
 import java.util.ArrayList;
@@ -73,10 +75,15 @@ public class ChatsFragment extends Fragment {
             }
         });
 
-        //updateToken(FirebaseInstanceId.getInstance().getToken());
+        updateToken(FirebaseInstanceId.getInstance().getToken());
         return view;
     }
 
+    private void updateToken(String token){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token1 = new Token(token);
+        reference.child(fUser.getUid()).setValue(token1);
+    }
 
     private void chatList() {
         mUsers = new ArrayList<>();
