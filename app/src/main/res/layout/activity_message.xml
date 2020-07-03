@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B9E2F4"
+    android:background="#98D7F4"
     tools:context=".MessageActivity">
 
     <RelativeLayout
@@ -68,13 +68,6 @@
             app:layout_constraintVertical_bias="0.0"
             app:popupTheme="@style/MenuStyle">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/msg_profile_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/emptydp" />
-
-
             <TextView
                 android:id="@+id/msg_usernameID"
                 android:layout_width="wrap_content"
@@ -85,6 +78,13 @@
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/msg_profile_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/emptydp" />
 
         </androidx.appcompat.widget.Toolbar>
 

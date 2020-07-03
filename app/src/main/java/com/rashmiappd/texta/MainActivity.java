@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.rashmiappd.texta.Fragments.ChatsFragment;
 import com.rashmiappd.texta.Fragments.ProfileFragment;
 import com.rashmiappd.texta.Fragments.UsersFragment;
+import com.rashmiappd.texta.Model.Chat;
 import com.rashmiappd.texta.Model.User;
 
 import java.util.ArrayList;
@@ -42,24 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseUser mFirebaseUser;
     DatabaseReference mReference;
-
-   /* @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if(currentUser == null)
-        {
-            sendToStart();
-        }
-    }
-
-    private void sendToStart() {
-        Intent startIntent = new Intent(MainActivity.this , StartActivity.class);
-        startActivity(startIntent);
-        finish();
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //Firebase
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
             Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(startIntent);
@@ -103,17 +86,43 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
-        ViewPager viewPager = findViewById(R.id.view_pager);
+         final TabLayout tabLayout = findViewById(R.id.tab_layout);
+        final ViewPager viewPager = findViewById(R.id.view_pager);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mReference = FirebaseDatabase.getInstance().getReference("Chats");
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+                int unread = 0 ;
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chat chat = snapshot.getValue(Chat.class);
+                        assert mFirebaseUser!=null;
+                        assert chat != null;
+                    if(chat != null && mFirebaseUser!= null && chat.getReceiver().equals(mFirebaseUser.getUid()) && !chat.isIsseen()){
+                        unread++;
+                    }
+                }
 
-        viewPagerAdapter.addFragments(new ChatsFragment(),"Chats");
-        viewPagerAdapter.addFragments(new UsersFragment(), "Users");
-        viewPagerAdapter.addFragments(new ProfileFragment(), "My Profile");
-        viewPager.setAdapter(viewPagerAdapter);
+                if(unread==0){
+                    viewPagerAdapter.addFragments(new ChatsFragment(),"Chats");
+                }else{
+                    viewPagerAdapter.addFragments(new ChatsFragment(),"Chats ("+unread+")");
+                }
+                viewPagerAdapter.addFragments(new UsersFragment(), "Users");
+                viewPagerAdapter.addFragments(new ProfileFragment(), "My Profile");
+                viewPager.setAdapter(viewPagerAdapter);
 
-        tabLayout.setupWithViewPager(viewPager);
+                tabLayout.setupWithViewPager(viewPager);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override

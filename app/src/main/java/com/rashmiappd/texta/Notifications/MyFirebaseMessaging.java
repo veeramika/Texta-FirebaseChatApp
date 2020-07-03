@@ -35,6 +35,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String sented = remoteMessage.getData().get("sented");
         String user = remoteMessage.getData().get("user");
 
+        //Not to receive notifications when already chatting
         SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
         String currentUser = preferences.getString("currentuser","none");
 

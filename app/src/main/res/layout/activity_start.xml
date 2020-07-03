@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgcolor"
+    android:background="@drawable/textabgg"
     tools:context=".StartActivity">
+
 
     <Button
         android:id="@+id/str_reg_buttonID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:backgroundTint="#9C27B0"
+        android:backgroundTint="#08B5A5"
         android:padding="4dp"
         android:paddingStart="4dp"
         android:paddingLeft="4dp"
@@ -24,16 +24,16 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freindzoneID"
-        app:layout_constraintVertical_bias="0.349" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
 
     <Button
         android:id="@+id/start_loginBtnID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#9C27B0"
+        android:backgroundTint="#08B5A5"
         android:padding="4dp"
         android:paddingStart="4dp"
         android:paddingLeft="4dp"
@@ -44,41 +44,25 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freindzoneID"
-        app:layout_constraintVertical_bias="0.205" />
-
-    <TextView
-        android:id="@+id/freindzoneID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/andika"
-        android:shadowColor="#EC0B57"
-        android:text="Connect to your friend zone..."
-        android:textColor="#DF0B53"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.594" />
 
     <TextView
         android:id="@+id/str_namaste_textviewID"
-        android:layout_width="138dp"
-        android:layout_height="85dp"
-        android:fontFamily="@font/architects_daughter"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:fontFamily="@font/princess_sofia"
         android:text="Texta"
         android:textColor="#EFE6F1"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintVertical_bias="0.432" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

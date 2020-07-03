@@ -12,6 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -282,6 +283,13 @@ public class MessageActivity extends AppCompatActivity {
         });
         }
 
+        //A check for not receiving messages when already chatting
+    private void currentUser(String userid){
+        SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+        editor.putString("currentuser", userid);
+        editor.apply();
+    }
+
     private void status(String status){
         reference = FirebaseDatabase.getInstance().getReference("Users").child(fUser.getUid());
 
@@ -295,6 +303,7 @@ public class MessageActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         status("online");
+        currentUser(userId);
     }
 
     @Override
@@ -302,5 +311,6 @@ public class MessageActivity extends AppCompatActivity {
         super.onPause();
         reference.removeEventListener(seenListener);
         status("offline");
+        currentUser("none");
     }
     }
